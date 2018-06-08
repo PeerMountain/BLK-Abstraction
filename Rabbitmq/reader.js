@@ -2,7 +2,7 @@
 
 var amqp = require('amqplib/callback_api');
 var amqpURL = "amqp://rerxszft:60yxnTE1GcCdOKNjYDaWI_cc-gPLUd4c@emu.rmq.cloudamqp.com/rerxszft";
-var BLKController = require('../api/BLKController.js');
+var BLKController = require('../BLKController.js');
 
 amqp.connect(amqpURL, function(err, conn) {
 	conn.createChannel(function(err, ch) {
