@@ -1,0 +1,5 @@
+{
+  "HttpProvider" : "http://localhost:8545",
+  "claimRegistryAddress" : "0xfe95555d509a4bbd7b866010a2c7fc3835713adc",
+  "AEaddress" : "0xcAF6Fd575594CA828E17983D3f4700C84c41802c"
+}
