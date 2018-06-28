@@ -2,7 +2,7 @@
 
 var amqp = require('amqplib/callback_api');
 var amqpURL = "amqp://rerxszft:60yxnTE1GcCdOKNjYDaWI_cc-gPLUd4c@emu.rmq.cloudamqp.com/rerxszft";
-var BLKController = require('../BLKController.js');
+var BLK = require('../BLK.js');
 
 amqp.connect(amqpURL, function(err, conn) {
 	conn.createChannel(function(err, ch) {
@@ -18,17 +18,24 @@ amqp.connect(amqpURL, function(err, conn) {
 					//console.log(message.subject);
 					//console.log(message.msgContent);
 					console.log(" Writing claim to blockchain", msg.content.toString());
-					BLKController.writeClaim(message.subject, JSON.stringify(message.msgContent));
+					BLK.writeClaim(message.subject, JSON.stringify(message.msgContent));
+				}
+				else if(message.getClaim != undefined){
+					console.log(" Getting claim from blockchain", msg.content.toString());
+					BLK.getClaim(message.subject, message.key);
+				}
+				else if(message.addAE != undefined){
+					console.log(" received petition to add an AE", msg.content.toString());
+					BLK.addAE(message.iden, message.address);
+				}
+				else if(message.removeAE != undefined){
+					console.log(" received petition to remove an AE", msg.content.toString());
+					BLK.removeAE(message.iden);
 				}
 				else{
-
-				if(message.getClaim != undefined){
-					console.log(" Getting claim from blockchain", msg.content.toString());
-					BLKController.getClaim(message.subject, message.key);
-				}else{
 					console.log("message received "+JSON.stringify(message));
 
-				}}
+				}
 			}catch (e){
 				if(e.message.includes("Unexpected token")){
 				console.log("Error: the message is not JSON "+e);					

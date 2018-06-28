@@ -15,17 +15,22 @@ amqp.connect(amqpURL, function(err, conn) {
     var msgGetClaim2 = JSON.stringify({"getClaim" : "get", "subject" : "0xD6c20237d98917ad3F56b4F19e444034EF6C934c", "key" : "0xa8a44765bfddbde1734a4e9c2977d79cc5a076240ca67769a782d8a8e7db8849"});
     var msg2 = 'Hello Bob, im Charlie';
 
+    var addAE = JSON.stringify({"addAE" : "add", "iden" : "1234", "address" : "0x8D9AF85B6B6BFCD9A1d830315c70ccE51E9E0edf"});
+    var removeAE = JSON.stringify({"removeAE" : "remove", "iden" : "1234"});
+
+
 
     ch.assertQueue(q, {durable: false});
-    // Note: on Node 6 Buffer.from(msg) should be used
-    //ch.sendToQueue(q, new Buffer(msgSetClaim));
+    ch.sendToQueue(q, new Buffer(addAE));
 
-    ch.sendToQueue(q, new Buffer(msgSetClaim2));
-    setTimeout(function(){
-          ch.sendToQueue(q, new Buffer(msgGetClaim2));
+    // ch.sendToQueue(q, new Buffer(msgSetClaim));
 
-        },10000);
-    //ch.sendToQueue(q, new Buffer(msg2));
+    // ch.sendToQueue(q, new Buffer(msgSetClaim2));
+    // setTimeout(function(){
+    //       ch.sendToQueue(q, new Buffer(msgGetClaim2));
+
+    //     },10000);
+    // ch.sendToQueue(q, new Buffer(msg2));
     channel = ch;
   });
   //setTimeout(function() { conn.close(); process.exit(0) }, 500);

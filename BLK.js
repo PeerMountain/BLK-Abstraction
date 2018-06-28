@@ -5,6 +5,8 @@ var sendQueue = require('./Rabbitmq/writer.js');
 
 
 var ClaimRegistryContract_json = require('./contracts/ClaimsRegistry');
+var AttestationManagerContract_json = require('./contracts/AttestationManager');
+
 
 exports.writeClaim = function (subject, value) {
 	var ClaimRegistry = web3.eth.contract(ClaimRegistryContract_json.abi).at(config.claimRegistryAddress);
@@ -26,7 +28,7 @@ exports.writeClaim = function (subject, value) {
 
 exports.getClaim = function(subject, key){
 	var ClaimRegistry = web3.eth.contract(ClaimRegistryContract_json.abi).at(config.claimRegistryAddress);
-	var data = web3.toAscii(ClaimRegistry.getClaim(config.AEaddress, subject, key));
+	var data = web3.toAscii(ClaimRegistry.getClaim(config.AEaddress, subject, key)).replace(/\0/g, '');
 	console.log("value of the message: " + data);
 	sendQueue.sendMessageByQueue(JSON.stringify(data));
 	return {"value" : data};
@@ -56,4 +58,23 @@ var isMined=function(argument) {
 		//console.log("Queried transaction status: Transaction does not exist in this node");
 		return ({"Error" : "Transaction does not exist in this node"});
 	}
+}
+
+exports.addAE = function(iden, address){
+	var AttestationManager = web3.eth.contract(AttestationManagerContract_json.abi).at(config.AttestationManager);
+	var transaction = AttestationManager.addAE(iden, address, {from:config.AEaddress, gas:4612387, gasPrice:web3.eth.gasPrice});
+	console.log("AE id: "+iden+" added, transactionHX: "+transaction);
+	return {"transaction" : transaction};
+}
+exports.removeAE = function(iden){
+	var AttestationManager = web3.eth.contract(AttestationManagerContract_json.abi).at(config.AttestationManager);
+	var transaction = AttestationManager.removeAE(iden, {from:config.AEaddress, gas:4612387, gasPrice:web3.eth.gasPrice});
+	console.log("AE id: "+iden+" removed, transactionHX: "+transaction);
+	return {"transaction" : transaction};
+}
+exports.getAE = function(iden){
+	var AttestationManager = web3.eth.contract(AttestationManagerContract_json.abi).at(config.AttestationManager);
+	var result = AttestationManager.attestationEngine(iden);	
+	console.log("AE id: "+iden+" with address: "+result);
+	return {"addres of AE" : result};
 }
