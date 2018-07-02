@@ -13,14 +13,14 @@
       "type": "constructor"
     }
   ],
-  "bytecode": "0x6080604052348015600f57600080fd5b5060405160208060b483398101806040528101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050603580607f6000396000f3006080604052600080fd00a165627a7a7230582085db8e025cf4b24ba655486ec2326350dbf6715dba8f521f1a519e06df35fd9f0029",
-  "deployedBytecode": "0x6080604052600080fd00a165627a7a7230582085db8e025cf4b24ba655486ec2326350dbf6715dba8f521f1a519e06df35fd9f0029",
+  "bytecode": "0x6080604052348015600f57600080fd5b5060405160208060b483398101806040528101908080519060200190929190505050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050603580607f6000396000f3006080604052600080fd00a165627a7a72305820200806784e89df4f54144571a743528181ba3a79605d0c848abdeb97eff627750029",
+  "deployedBytecode": "0x6080604052600080fd00a165627a7a72305820200806784e89df4f54144571a743528181ba3a79605d0c848abdeb97eff627750029",
   "sourceMap": "26:193:6:-;;;151:66;8:9:-1;5:2;;;30:1;27;20:12;5:2;151:66:6;;;;;;;;;;;;;;;;;;;;;;;;;;;;;204:6;196:5;;:14;;;;;;;;;;;;;;;;;;151:66;26:193;;;;;;",
   "deployedSourceMap": "26:193:6:-;;;;;",
   "source": "pragma solidity ^0.4.23;\n\ncontract Ownable {\n\n    address owner;\n\n    modifier onlyOwner(){\n        require(msg.sender == owner);\n        _;\n    }\n    constructor(address _owner) public {\n        owner = _owner;\n    }\n}\n",
-  "sourcePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/notary-contract/smartContracts/contracts/Ownable.sol",
+  "sourcePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/BLK-Abstraction/smartContracts/contracts/Ownable.sol",
   "ast": {
-    "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/notary-contract/smartContracts/contracts/Ownable.sol",
+    "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/BLK-Abstraction/smartContracts/contracts/Ownable.sol",
     "exportedSymbols": {
       "Ownable": [
         588
@@ -326,7 +326,7 @@
     "src": "0:220:6"
   },
   "legacyAST": {
-    "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/notary-contract/smartContracts/contracts/Ownable.sol",
+    "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/BLK-Abstraction/smartContracts/contracts/Ownable.sol",
     "exportedSymbols": {
       "Ownable": [
         588
@@ -637,5 +637,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-06-27T11:28:54.455Z"
+  "updatedAt": "2018-06-29T13:53:00.254Z"
 }

@@ -79,9 +79,9 @@
   "sourceMap": "",
   "deployedSourceMap": "",
   "source": "pragma solidity ^0.4.23;\n\nimport './Ownable.sol';\n\ncontract Notary is Ownable{\n\n\tuint id;\n\tmapping (bytes32 => MessageData) public messages;\n\n\tevent MessageSaved(bytes32 messageHash);\n\n\tconstructor(uint _id) public {\n\t\tid = _id;\n\t}\n\n\tstruct MessageData {\n\t\tbytes32 messageHash;\n\t\tbytes32 messageSender;\n\t\tuint64 timestamp;\n\t}\n\nfunction saveMessage(bytes32 messageHash, bytes32 messageSender, uint64 timestamp) public onlyOwner {\n\t\tmessages[messageHash]=MessageData(messageHash, messageSender,timestamp);\n\t\temit MessageSaved(messageHash);\n\t}\n\n }\n",
-  "sourcePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/notary-contract/smartContracts/contracts/Notary.sol",
+  "sourcePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/BLK-Abstraction/smartContracts/contracts/Notary.sol",
   "ast": {
-    "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/notary-contract/smartContracts/contracts/Notary.sol",
+    "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/BLK-Abstraction/smartContracts/contracts/Notary.sol",
     "exportedSymbols": {
       "Notary": [
         562
@@ -102,7 +102,7 @@
         "src": "0:24:5"
       },
       {
-        "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/notary-contract/smartContracts/contracts/Ownable.sol",
+        "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/BLK-Abstraction/smartContracts/contracts/Ownable.sol",
         "file": "./Ownable.sol",
         "id": 506,
         "nodeType": "ImportDirective",
@@ -798,7 +798,7 @@
     "src": "0:545:5"
   },
   "legacyAST": {
-    "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/notary-contract/smartContracts/contracts/Notary.sol",
+    "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/BLK-Abstraction/smartContracts/contracts/Notary.sol",
     "exportedSymbols": {
       "Notary": [
         562
@@ -819,7 +819,7 @@
         "src": "0:24:5"
       },
       {
-        "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/notary-contract/smartContracts/contracts/Ownable.sol",
+        "absolutePath": "/Users/alicialombarte/Documents/XinCore/PeerMountain/BLK-Abstraction/smartContracts/contracts/Ownable.sol",
         "file": "./Ownable.sol",
         "id": 506,
         "nodeType": "ImportDirective",
@@ -1520,5 +1520,5 @@
   },
   "networks": {},
   "schemaVersion": "2.0.0",
-  "updatedAt": "2018-06-27T11:28:54.455Z"
+  "updatedAt": "2018-06-29T13:53:00.254Z"
 }
