@@ -8,9 +8,9 @@ You can also use ropsten testnet to interact with the deployed test contract. 0x
 
 ## Endpoints
 
-Please read the swagger [swagger file](https://github.com/PeerMountain/BLK-Abstraction/api/definition/BLKabstraction_Swagger.json) for details on the endpoints and how to interact with them.
+Please read the swagger [swagger file](https://github.com/PeerMountain/BLK-Abstraction/blob/master/api/definition/BLKabstraction_Swagger.json) for details on the endpoints and how to interact with them.
 
-A postman collection is also provided [here](https://github.com/PeerMountain/BLK-Abstraction/api/definition/BLKabstraction_postman_collection.json) with examples for all petitions.
+A postman collection is also provided [here](https://github.com/PeerMountain/BLK-Abstraction/blob/master/api/definition/BLKabstraction_postman_collection.json) with examples for all petitions.
 
 
 ## Built With
