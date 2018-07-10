@@ -1,0 +1,287 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "With this API you can manage attestation engines and claims.",
+    "version" : "1.0",
+    "title" : "BLK abstraction API"
+  },
+  "host" : "localhost:3000",
+  "basePath" : "/",
+  "tags" : [ {
+    "name" : "attestation engines",
+    "description" : "Secured Admin-only calls"
+  }, {
+    "name" : "claims",
+    "description" : "Operations available to regular developers"
+  } ],
+  "schemes" : [ "http" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/ae" : {
+      "post" : {
+        "tags" : [ "attestation engines" ],
+        "summary" : "add attestation engine",
+        "description" : "Add an attestation engine",
+        "operationId" : "AePost",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Body",
+          "description" : "ID and address associated to the new attestation engine",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/AddAERequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ ],
+        "x-unitTests" : [ {
+          "request" : {
+            "method" : "POST",
+            "uri" : "/ae",
+            "headers" : {
+              "Content-Type" : "application/json"
+            },
+            "body" : "{\"iden\":\"1234\",\"address\":\"0x8D9AF85B6B6BFCD9A1d830315c70ccE51E9E0edf\"}"
+          },
+          "expectedResponse" : {
+            "x-allowExtraHeaders" : true,
+            "x-bodyMatchMode" : "NONE",
+            "x-arrayOrderedMatching" : false,
+            "x-arrayCheckCount" : false,
+            "x-matchResponseSchema" : true,
+            "headers" : { }
+          },
+          "x-testShouldPass" : true,
+          "x-testEnabled" : true,
+          "x-testName" : "addAE",
+          "x-testDescription" : "TODO: Add Description"
+        } ],
+        "x-operation-settings" : {
+          "CollectParameters" : false,
+          "AllowDynamicQueryParameters" : false,
+          "AllowDynamicFormParameters" : false,
+          "IsMultiContentStreaming" : false
+        }
+      },
+      "delete" : {
+        "tags" : [ "attestation engines" ],
+        "summary" : "remove attestation engine",
+        "description" : "remove an attestation engine by ID",
+        "operationId" : "AeDelete",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Body",
+          "description" : "ID of the attestaion engine to remove",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/RemoveAERequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ ],
+        "x-unitTests" : [ {
+          "request" : {
+            "method" : "DELETE",
+            "uri" : "/ae",
+            "headers" : {
+              "Content-Type" : "application/json"
+            },
+            "body" : "{\"iden\":\"1234\"}"
+          },
+          "expectedResponse" : {
+            "x-allowExtraHeaders" : true,
+            "x-bodyMatchMode" : "NONE",
+            "x-arrayOrderedMatching" : false,
+            "x-arrayCheckCount" : false,
+            "x-matchResponseSchema" : true,
+            "headers" : { }
+          },
+          "x-testShouldPass" : true,
+          "x-testEnabled" : true,
+          "x-testName" : "removeAE",
+          "x-testDescription" : "TODO: Add Description"
+        } ],
+        "x-operation-settings" : {
+          "CollectParameters" : false,
+          "AllowDynamicQueryParameters" : false,
+          "AllowDynamicFormParameters" : false,
+          "IsMultiContentStreaming" : false
+        }
+      }
+    },
+    "/claim" : {
+      "post" : {
+        "tags" : [ "claims" ],
+        "summary" : "Add a claim",
+        "description" : "Write a claim",
+        "operationId" : "ClaimPost",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "Body",
+          "description" : "subject address and claim content",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/WriteClaimRequest"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ ],
+        "x-unitTests" : [ {
+          "request" : {
+            "method" : "POST",
+            "uri" : "/claim",
+            "headers" : {
+              "Content-Type" : "application/json"
+            },
+            "body" : "{\"subject\":\"0x4aBfE88c3a57f205E8D34Fa061FC4e019DA79167\",\"value\":\"information about the subject\"}"
+          },
+          "expectedResponse" : {
+            "x-allowExtraHeaders" : true,
+            "x-bodyMatchMode" : "NONE",
+            "x-arrayOrderedMatching" : false,
+            "x-arrayCheckCount" : false,
+            "x-matchResponseSchema" : true,
+            "headers" : { }
+          },
+          "x-testShouldPass" : true,
+          "x-testEnabled" : true,
+          "x-testName" : "writeClaim",
+          "x-testDescription" : "TODO: Add Description"
+        } ],
+        "x-operation-settings" : {
+          "CollectParameters" : false,
+          "AllowDynamicQueryParameters" : false,
+          "AllowDynamicFormParameters" : false,
+          "IsMultiContentStreaming" : false
+        }
+      }
+    },
+    "/claim/{subjectAddress}/{key}" : {
+      "get" : {
+        "tags" : [ "claims" ],
+        "summary" : "getClaim",
+        "description" : "get the claim content",
+        "operationId" : "Claim0x4aBfE88c3a57f205E8D34Fa061FC4e019DA791670x73ae8d2eb87f97442fed102e2a23b23871ef0ab9baceaeeb03b6a29b1377a132Get",
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "subjectAddress",
+          "in" : "path",
+          "description" : "The address of the subject.",
+          "required" : true,
+          "type" : "number"
+        }, {
+          "name" : "key",
+          "in" : "path",
+          "description" : "The key of the claim.",
+          "required" : true,
+          "type" : "number"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation"
+          }
+        },
+        "security" : [ ],
+        "x-unitTests" : [ {
+          "request" : {
+            "method" : "GET",
+            "uri" : "/claim/0x4aBfE88c3a57f205E8D34Fa061FC4e019DA79167/0x73ae8d2eb87f97442fed102e2a23b23871ef0ab9baceaeeb03b6a29b1377a132"
+          },
+          "expectedResponse" : {
+            "x-allowExtraHeaders" : true,
+            "x-bodyMatchMode" : "NONE",
+            "x-arrayOrderedMatching" : false,
+            "x-arrayCheckCount" : false,
+            "x-matchResponseSchema" : true,
+            "headers" : { }
+          },
+          "x-testShouldPass" : true,
+          "x-testEnabled" : true,
+          "x-testName" : "getClaim",
+          "x-testDescription" : "TODO: Add Description"
+        } ],
+        "x-operation-settings" : {
+          "CollectParameters" : false,
+          "AllowDynamicQueryParameters" : false,
+          "AllowDynamicFormParameters" : false,
+          "IsMultiContentStreaming" : false
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "AddAERequest" : {
+      "type" : "object",
+      "required" : [ "address", "iden" ],
+      "properties" : {
+        "iden" : {
+          "type" : "string",
+          "example" : "1234",
+          "description" : ""
+        },
+        "address" : {
+          "type" : "string",
+          "example" : "0x8D9AF85B6B6BFCD9A1d830315c70ccE51E9E0edf",
+          "description" : ""
+        }
+      },
+      "title" : "addAERequest",
+      "example" : {
+        "iden" : "1234",
+        "address" : "0x8D9AF85B6B6BFCD9A1d830315c70ccE51E9E0edf"
+      }
+    },
+    "RemoveAERequest" : {
+      "type" : "object",
+      "required" : [ "iden" ],
+      "properties" : {
+        "iden" : {
+          "type" : "string",
+          "example" : "1234",
+          "description" : ""
+        }
+      },
+      "title" : "removeAERequest",
+      "example" : {
+        "iden" : "1234"
+      }
+    },
+    "WriteClaimRequest" : {
+      "type" : "object",
+      "required" : [ "subject", "value" ],
+      "properties" : {
+        "subject" : {
+          "type" : "string",
+          "example" : "0x4aBfE88c3a57f205E8D34Fa061FC4e019DA79167",
+          "description" : ""
+        },
+        "value" : {
+          "type" : "string",
+          "example" : "information about the subject",
+          "description" : ""
+        }
+      },
+      "title" : "writeClaimRequest",
+      "example" : {
+        "subject" : "0x4aBfE88c3a57f205E8D34Fa061FC4e019DA79167",
+        "value" : "information about the subject"
+      }
+    }
+  }
+}
